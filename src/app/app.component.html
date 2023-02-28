@@ -1,0 +1,27 @@
+<div>
+  <!-- <input class="avt-input-text" style="width:200px;height:30px" type="text" [(ngModel)]='tree_filter'
+    (change)='filterTree($event)' placeholder="Fuzzy Search Bom"> -->
+  <div class="tree-div">
+    <tree-root #tree [nodes]="nodes" [options]="options">
+      <ng-template #treeNodeTemplate let-node let-index="index">
+        <div class="evenLevel">
+          <table style="height:100%">
+            <tr>
+              <td class="node_light" [style.background-color]="getAltCompGroupColor(node)">
+                <label *ngIf="node.data.isDummyItem === 'Y'" style='color:white'>D</label>
+              </td>
+              <td class="node_light" [style.background-color]="getPegStatusColor(node)">
+              </td>
+              <td
+                [ngClass]="{'node_not_phantom_light': hasChild(node) === false, 'node_phantom_light': hasChild(node) === true}">
+              </td>
+              <td class="node_number" data-toggle="tooltip" data-placement="right" [title]="node.data.comp_pn_desc">
+                <span [ngClass]="{'inpathlable':isInPath(node)}">{{ node.data.comp_pn}}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-template>
+    </tree-root>
+  </div>
+</div>
